@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kartik Reddy Cricket Analyst | Join Official Telegram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #070b0e;
+      --card-bg: rgba(14, 21, 29, 0.85);
+      --accent-green: #00ffa3;
+      --accent-gold: #ffd700;
+      --telegram-blue: #0088cc;
+      --text-white: #ffffff;
+      --text-gray: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(0, 255, 163, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(0, 136, 204, 0.15) 0%, transparent 50%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Live Ticker Bar */
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 255, 163, 0.12);
+      border: 1px solid rgba(0, 255, 163, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-green);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .top-badge .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    /* Avatar & Profile */
+    .avatar-wrapper {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      border: 3px solid var(--accent-green);
+      box-shadow: 0 0 25px rgba(0, 255, 163, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Teko', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      letter-spacing: 1px;
+    }
+
+    .verified-icon {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: #0088cc;
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      border: 2px solid var(--bg-dark);
+    }
+
+    .profile-title {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .profile-subtitle {
+      font-size: 13px;
+      color: var(--text-gray);
+      margin-bottom: 14px;
+    }
+
+    .profile-subtitle span {
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    /* Auto Redirect Box */
+    .redirect-card {
+      width: 100%;
+      background: rgba(14, 21, 29, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+    }
+
+    .timer-ring-wrapper {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-svg {
+      transform: rotate(-90deg);
+      width: 48px;
+      height: 48px;
+    }
+
+    .timer-svg circle {
+      fill: none;
+      stroke-width: 4;
+    }
+
+    .timer-bg {
+      stroke: rgba(255, 255, 255, 0.1);
+    }
+
+    .timer-progress {
+      stroke: var(--accent-green);
+      stroke-dasharray: 125.6;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .timer-number {
+      position: absolute;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .redirect-text {
+      text-align: left;
+      flex: 1;
+      margin-left: 14px;
+    }
+
+    .redirect-text .title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .redirect-text .desc {
+      font-size: 11px;
+      color: var(--text-gray);
+    }
+
+    /* Big Hero Button */
+    .hero-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #00ffa3 0%, #00b4d8 100%);
+      color: #061014;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 18px 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 255, 163, 0.45);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      animation: heroPulse 1.8s infinite;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .hero-btn i {
+      font-size: 24px;
+      color: #005c8a;
+    }
+
+    .hero-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: rotate(30deg);
+      animation: shine 2.5s infinite;
+    }
+
+    /* Trust Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 6px;
+    }
+
+    .stat-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Match Proof Highlight */
+    .proof-card {
+      width: 100%;
+      background: rgba(14, 21, 29, 0.7);
+      border: 1px dashed rgba(0, 255, 163, 0.3);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 12px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .proof-badge {
+      background: rgba(0, 255, 163, 0.15);
+      color: var(--accent-green);
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    @keyframes heroPulse {
+      0% { transform: scale(1); box-shadow: 0 10px 25px rgba(0, 255, 163, 0.4); }
+      50% { transform: scale(1.02); box-shadow: 0 14px 35px rgba(0, 255, 163, 0.7); }
+      100% { transform: scale(1); box-shadow: 0 10px 25px rgba(0, 255, 163, 0.4); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-150%) rotate(30deg); }
+      100% { transform: translateX(150%) rotate(30deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Top Live Ticker -->
+    <div class="top-badge">
+      <div class="dot"></div>
+      OFFICIAL TELEGRAM CHANNEL
+    </div>
+
+    <!-- Kartik Reddy Avatar & Title -->
+    <div class="avatar-wrapper">
+      <div class="avatar">KR</div>
+      <div class="verified-icon"><i class="fa-solid fa-check"></i></div>
+    </div>
+
+    <h1 class="profile-title">KARTIK REDDY</h1>
+    <p class="profile-subtitle">కార్తిక్ రెడ్డి • <span>CRICKET ANALYST #1</span></p>
+
+    <!-- Auto Redirect Timer Box -->
+    <div class="redirect-card">
+      <div class="timer-ring-wrapper">
+        <svg class="timer-svg" viewBox="0 0 44 44">
+          <circle class="timer-bg" cx="22" cy="22" r="20"></circle>
+          <circle class="timer-progress" id="progressCircle" cx="22" cy="22" r="20"></circle>
+        </svg>
+        <span class="timer-number" id="countdown">3</span>
+      </div>
+      <div class="redirect-text">
+        <div class="title">Redirecting to Telegram...</div>
+        <div class="desc">Channel automatically opens in 3 seconds</div>
+      </div>
+    </div>
+
+    <!-- Big Prominent CTA Button -->
+    <a href="https://t.me/+x_O6PdUXwB1lNWE9" class="hero-btn" id="joinBtn">
+      <i class="fa-brands fa-telegram"></i>
+      JOIN TELEGRAM NOW
+    </a>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val">100%</div>
+        <div class="stat-label">Free Entry</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">98.4%</div>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">74K+</div>
+        <div class="stat-label">Members</div>
+      </div>
+    </div>
+
+    <!-- Proof Card -->
+    <div class="proof-card">
+      <span>🔥 Match Reports & Live Sessions</span>
+      <span class="proof-badge">VERIFIED PASS</span>
+    </div>
+
+  </div>
+
+  <script>
+    const TELEGRAM_URL = "https://t.me/+x_O6PdUXwB1lNWE9";
+    let timeLeft = 3;
+    const countdownEl = document.getElementById('countdown');
+    const progressCircle = document.getElementById('progressCircle');
+    const totalCircumference = 2 * Math.PI * 20; // 125.66
+
+    progressCircle.style.strokeDasharray = totalCircumference;
+
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft >= 0) {
+        countdownEl.innerText = timeLeft;
+        const offset = totalCircumference - (timeLeft / 3) * totalCircumference;
+        progressCircle.style.strokeDashoffset = offset;
+      }
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        window.location.href = TELEGRAM_URL;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
